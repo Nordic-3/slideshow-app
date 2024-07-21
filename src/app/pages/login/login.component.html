@@ -1,1 +1,18 @@
-<p>login works!</p>
+<div class="card-container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Please log in to your account</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field>
+                <mat-label for="email">Email address</mat-label>
+                <input matInput type="email" [formControl]="email" />
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label for="psw">Password</mat-label>
+                <input matInput type="password" [formControl]="psw" />
+            </mat-form-field>
+            <button mat-raised-button (click)="login()">Login</button>
+        </mat-card-content>
+    </mat-card>
+</div>
