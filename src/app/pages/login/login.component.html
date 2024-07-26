@@ -13,6 +13,7 @@
                 <input matInput type="password" [formControl]="psw" />
             </mat-form-field>
             <button mat-raised-button (click)="login()">Login</button>
+            <span *ngIf="!(success)" style="color: red;">login failed</span>
         </mat-card-content>
     </mat-card>
 </div>

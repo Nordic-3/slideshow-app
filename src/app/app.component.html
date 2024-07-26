@@ -4,7 +4,8 @@
       <mat-toolbar color="primary" fxFlex>
         <ul fxFlex fxLayout="row" fxLayoutAlign="space-between center" style="width: 100%;">
           <li><button mat-raised-button [routerLink]="'/show'">Slideshow</button></li>
-          <li><button mat-raised-button [routerLink]="'/login'">Login</button></li>
+          <li *ngIf="!(user)"><button mat-raised-button [routerLink]="'/login'">Login</button></li>
+          <li *ngIf="user"><button mat-raised-button [routerLink]="'/login'" (click)="logout()">Logout</button></li>
         </ul>
       </mat-toolbar>
     </div>

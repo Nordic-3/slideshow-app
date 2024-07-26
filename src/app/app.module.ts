@@ -8,6 +8,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButton } from '@angular/material/button';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { getStorage, provideStorage } from '@angular/fire/storage';
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from './enviroment/enviroment';
 
 @NgModule({
   declarations: [
@@ -19,10 +25,14 @@ import { MatButton } from '@angular/material/button';
     MatToolbarModule,
     FlexLayoutModule,
     MatSidenavModule,
-    MatButton
+    MatButton,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage())
   ],
   bootstrap: [AppComponent]
 })
