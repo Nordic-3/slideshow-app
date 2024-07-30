@@ -1,10 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ImagesService } from '../../services/images/images.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-slideshow',
   templateUrl: './slideshow.component.html',
-  styleUrl: './slideshow.component.scss'
+  styleUrls: ['./slideshow.component.scss']
 })
-export class SlideshowComponent {
+export class SlideshowComponent implements OnInit {
+  imageURL: string | undefined;
+  imageNumber: number = 2;
+  currentDelay : number = 5000;
+  time = new FormControl<number>(this.currentDelay);
+  number = new FormControl<number>(this.imageNumber);
 
+  constructor(private imageService: ImagesService) { }
+
+  ngOnInit(): void {
+    this.showImages();
+  }
+
+  private delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  private async showImages() {
+    while (true) {
+      for (let i = 1; i <= this.imageNumber; i++) {
+        let name = 'images/' + i + '.jpg';
+        this.imageService.loadImage(name).subscribe(url => {
+          this.imageURL = url;
+        });
+        await this.delay(this.currentDelay); 
+      }
+    }
+  }
+
+  modify(){
+    this.currentDelay = this.time.value || 5000;
+    this.imageNumber = this.number.value || 1;
+  }
 }

@@ -1,4 +1,26 @@
-<p>slideshow works!</p>
-<div>
-    <img src="../../../../public/P1120751.JPG">
-    </div>
+<div *ngIf="imageURL" class="card-container">
+    <mat-card>
+        <mat-card-content>
+            <img [src]="imageURL" alt="Loaded from Firebase Storage">
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<div class="card-container" >
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Modify slideshow parameters</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field>
+                <mat-label for="time">Milliseconds</mat-label>
+                <input matInput type="number" [formControl]="time" />
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label for="number">Number of images</mat-label>
+                <input matInput type="number" [formControl]="number" />
+            </mat-form-field>
+            <button mat-raised-button (click)="modify()">Modify</button>
+        </mat-card-content>
+    </mat-card>
+</div>

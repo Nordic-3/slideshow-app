@@ -1,0 +1,40 @@
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.card-container {
+    margin-top: 0.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+mat-card, mat-card-content {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+mat-form-field{
+    width: 100%;
+}
+
+mat-card-content button {
+    background-color: cyan;
+    color: black;
+    font-size: large;
+}
+
+mat-card-header{
+    color: cyan;
+    margin-bottom: 2%;
+    font-size: large;
+}
