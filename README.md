@@ -1,5 +1,6 @@
 # SlideshowApp
 In this hobby project, the photos I upload will appear as a slideshow. The main purpose is to build a homemade digital photo frame from an old laptop LCD screen with a Raspberry Pi.
+It can also generate an episode number for the Friends TV show.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.6.
 

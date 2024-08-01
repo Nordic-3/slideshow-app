@@ -17,8 +17,10 @@ mat-card-content {
     align-items: center;
 }
 
-mat-form-field {
-    width: 100%;
+mat-card-header {
+    color: cyan;
+    margin-bottom: 2%;
+    font-size: large;
 }
 
 mat-card-content button {
@@ -27,8 +29,8 @@ mat-card-content button {
     font-size: large;
 }
 
-mat-card-header {
-    color: cyan;
-    margin-bottom: 2%;
-    font-size: large;
+mat-card-content p{
+    padding: 2%;
+    color: white;
+    font-size: larger;
 }

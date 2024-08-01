@@ -18,7 +18,7 @@ export class LoginComponent {
 
   login(){
    this.authService.login(this.email.value || "", this.psw.value || "").then(cred => {
-    this.router.navigateByUrl('/show');
+    this.router.navigateByUrl('/watch');
    }).catch(error => {
     this.success = false;
    }); 

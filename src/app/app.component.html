@@ -3,7 +3,8 @@
     <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" fxHide.sm fxHide.xs>
       <mat-toolbar color="primary" fxFlex>
         <ul fxFlex fxLayout="row" fxLayoutAlign="space-between center" style="width: 100%;">
-          <li><button mat-raised-button [routerLink]="'/show'">Slideshow</button></li>
+          <li *ngIf="user"><button mat-raised-button [routerLink]="'/show'">Slideshow</button></li>
+          <li *ngIf="user"><button mat-raised-button [routerLink]="'/watch'" >What to watch?</button></li>
           <li *ngIf="!(user)"><button mat-raised-button [routerLink]="'/login'">Login</button></li>
           <li *ngIf="user"><button mat-raised-button [routerLink]="'/login'" (click)="logout()">Logout</button></li>
         </ul>
@@ -11,5 +12,4 @@
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
 <router-outlet />

@@ -9,15 +9,16 @@ import { FormControl } from '@angular/forms';
 })
 export class SlideshowComponent implements OnInit {
   imageURL: string | undefined;
-  imageNumber: number = 2;
+  imageNumber: number =  0;
   currentDelay : number = 5000;
   time = new FormControl<number>(this.currentDelay);
-  number = new FormControl<number>(this.imageNumber);
 
   constructor(private imageService: ImagesService) { }
 
-  ngOnInit(): void {
+ async ngOnInit(): Promise<void> {
+    this.imageNumber = await this.imageService.imageNumber();
     this.showImages();
+    console.log(this.imageNumber);
   }
 
   private delay(ms: number) {
@@ -38,6 +39,5 @@ export class SlideshowComponent implements OnInit {
 
   modify(){
     this.currentDelay = this.time.value || 5000;
-    this.imageNumber = this.number.value || 1;
   }
 }
