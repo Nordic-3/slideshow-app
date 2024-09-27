@@ -1,1 +1,25 @@
-{}
+{
+    "hosting": {
+      "site": "slideshow-app-810aa",
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      
+      "headers": [],
+      "trailingSlash": false,
+      "public": "dist/slideshow-app/browser",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "channels": {
+        "slideshow-app": {
+          "public": "slideshow-app"
+        }
+      }
+    }
+  }
