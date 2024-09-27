@@ -12,13 +12,14 @@ export class SlideshowComponent implements OnInit {
   imageNumber: number =  0;
   currentDelay : number = 5000;
   time = new FormControl<number>(this.currentDelay);
+  loading : boolean = true;
 
   constructor(private imageService: ImagesService) { }
 
  async ngOnInit(): Promise<void> {
     this.imageNumber = await this.imageService.imageNumber();
+    this.loading = false;
     this.showImages();
-    console.log(this.imageNumber);
   }
 
   private delay(ms: number) {
