@@ -1,6 +1,7 @@
 {
   "projects": {
-    "slideshow-app": "slideshow-app-810aa"
+    "slideshow-app": "slideshow-app-810aa",
+    "slides": "slideshow-43c3c"
   },
   "targets": {},
   "etags": {},
