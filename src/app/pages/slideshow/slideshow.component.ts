@@ -17,9 +17,11 @@ export class SlideshowComponent implements OnInit {
   constructor(private imageService: ImagesService) { }
 
  async ngOnInit(): Promise<void> {
-    this.imageNumber = await this.imageService.imageNumber();
+  this.imageService.imageNumber().subscribe(imageNumbers => {
+    this.imageNumber = imageNumbers[0];
     this.loading = false;
     this.showImages();
+  });
   }
 
   private delay(ms: number) {
@@ -27,6 +29,7 @@ export class SlideshowComponent implements OnInit {
   }
 
   private async showImages() {
+    if (this.imageNumber === 0) return;
     while (true) {
       for (let i = 1; i <= this.imageNumber; i++) {
         let name = 'images/' + i + '.jpg';
