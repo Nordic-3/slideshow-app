@@ -14,6 +14,8 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from './enviroment/enviroment';
+import { DialogbodyModule } from './pages/dialogbody/dialogbody.module';
+
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { environment } from './enviroment/enviroment';
     MatToolbarModule,
     FlexLayoutModule,
     MatSidenavModule,
+    DialogbodyModule,
     MatButton,
     AngularFireModule.initializeApp(environment.firebaseConfig)
   ],

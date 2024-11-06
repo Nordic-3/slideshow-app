@@ -11,16 +11,5 @@
 </div>
 
 <div class="card-container">
-    <mat-card *ngIf="!loading">
-        <mat-card-header>
-            <mat-card-title>Modify delay time</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <mat-form-field>
-                <mat-label for="time">Milliseconds</mat-label>
-                <input matInput type="number" [formControl]="time" />
-            </mat-form-field>
-            <button mat-raised-button (click)="modify()">Modify</button>
-        </mat-card-content>
-    </mat-card>
+    <button mat-raised-button (click)="openDialog()">Modify delay time</button>
 </div>

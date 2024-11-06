@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ImagesService } from '../../services/images/images.service';
 import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogbodyComponent } from '../dialogbody/dialogbody.component';
+import { DataSendService } from '../../services/datasend/data-send.service';
+
 
 @Component({
   selector: 'app-slideshow',
@@ -14,13 +18,17 @@ export class SlideshowComponent implements OnInit {
   time = new FormControl<number>(this.currentDelay);
   loading : boolean = true;
 
-  constructor(private imageService: ImagesService) { }
+
+  constructor(private imageService: ImagesService, private dialog : MatDialog, private dataService : DataSendService) { }
 
  async ngOnInit(): Promise<void> {
   this.imageService.imageNumber().subscribe(imageNumbers => {
     this.imageNumber = imageNumbers[0];
     this.loading = false;
     this.showImages();
+  });
+  this.dataService.currentVariable.subscribe(value => {
+    this.currentDelay = value;
   });
   }
 
@@ -41,7 +49,10 @@ export class SlideshowComponent implements OnInit {
     }
   }
 
-  modify(){
-    this.currentDelay = this.time.value || 5000;
+  openDialog(){
+    this.dataService.updateVariable(this.currentDelay);
+    this.dialog.open(DialogbodyComponent, {
+      width: '550px'
+    });
   }
 }

@@ -1,0 +1,15 @@
+.card-container {
+    margin-top: 0.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    max-height: 100vh;
+}
+
+div button {
+    background-color: cyan;
+    color: black;
+    font-size: large;
+}
