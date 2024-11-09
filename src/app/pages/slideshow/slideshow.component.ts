@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ImagesService } from '../../services/images/images.service';
-import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogbodyComponent } from '../dialogbody/dialogbody.component';
 import { DataSendService } from '../../services/datasend/data-send.service';
@@ -15,7 +14,6 @@ export class SlideshowComponent implements OnInit {
   imageURL: string | undefined;
   imageNumber: number =  0;
   currentDelay : number = 5000;
-  time = new FormControl<number>(this.currentDelay);
   loading : boolean = true;
 
 

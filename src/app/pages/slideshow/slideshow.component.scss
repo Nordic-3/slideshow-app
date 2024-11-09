@@ -55,3 +55,15 @@ mat-spinner {
 ::ng-deep mat-progress-spinner circle {
   stroke: black !important;
 }
+
+.vertical-button {
+    position: fixed;
+    top: 50%;
+    right: -2%;
+    transition: right 0.3s ease;
+    padding: 2%;
+}
+
+.vertical-button:hover {
+    right: 0%;
+}
