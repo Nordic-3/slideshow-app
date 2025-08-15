@@ -10,6 +10,18 @@
     </mat-card>
 </div>
 
-<div>
-    <button mat-raised-button (click)="openDialog()" class="vertical-button"><mat-icon style="transform: scale(3);">settings</mat-icon></button>
+<div class="floating-button settings-button">
+  <button mat-raised-button (click)="openDialog()" class="vertical-button">
+    <mat-icon style="transform: scale(3);">settings</mat-icon>
+  </button>
+</div>
+<div class="floating-button stop-button">
+  <button mat-raised-button (click)="stopSlideshow()" class="vertical-button">
+    <mat-icon style="transform: scale(3);">stop</mat-icon>
+  </button>
+</div>
+<div class="floating-button play-button">
+  <button mat-raised-button (click)="startSlideshow()" class="vertical-button">
+    <mat-icon style="transform: scale(3);">play_arrow</mat-icon>
+  </button>
 </div>

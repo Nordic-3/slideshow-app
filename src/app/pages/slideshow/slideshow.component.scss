@@ -56,14 +56,34 @@ mat-spinner {
   stroke: black !important;
 }
 
-.vertical-button {
-    position: fixed;
-    top: 50%;
-    right: -2%;
-    transition: right 0.3s ease;
-    padding: 2%;
+.button-column:hover {
+  right: 0%;
 }
 
-.vertical-button:hover {
-    right: 0%;
+.floating-button {
+  position: fixed;
+  right: -1.5%;
+  transition: right 0.3s;
+  z-index: 1000;
+}
+
+.floating-button:hover {
+  right: 0%;
+}
+
+.settings-button {
+  top: 40%;
+}
+
+.stop-button {
+  top: 50%;
+}
+
+.play-button {
+  top: 60%;
+}
+
+.vertical-button {
+  padding: 50%;
+  transition: background 0.3s;
 }
