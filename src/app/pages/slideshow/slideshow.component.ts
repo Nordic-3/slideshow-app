@@ -38,11 +38,8 @@ export class SlideshowComponent implements OnInit {
     if (this.imageNumber === 0) return;
     while (true) {
       for (let i = 1; i <= this.imageNumber; i++) {
-        let name = 'images/' + i + '.jpg';
-        this.imageService.loadImage(name).subscribe(url => {
-          this.imageURL = url;
-        });
-        await this.delay(this.currentDelay); 
+        this.imageURL = `assets/images/${i}.jpg`;
+        await this.delay(this.currentDelay);
       }
     }
   }
