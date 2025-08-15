@@ -13,7 +13,7 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire/compat';
-import { environment } from './enviroment/enviroment';
+import { environment } from '../enviroments/enviroment';
 import { DialogbodyModule } from './pages/dialogbody/dialogbody.module';
 
 
