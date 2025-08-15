@@ -15,7 +15,8 @@ export class SlideshowComponent implements OnInit {
   imageNumber: number =  0;
   currentDelay : number = 5000;
   loading : boolean = true;
-
+  private isSlideshowRunning = true;
+  private currentlyDisplayedImageName = 1;
 
   constructor(private imageService: ImagesService, private dialog : MatDialog, private dataService : DataSendService) { }
 
@@ -36,10 +37,14 @@ export class SlideshowComponent implements OnInit {
 
   private async showImages() {
     if (this.imageNumber === 0) return;
-    while (true) {
-      for (let i = 1; i <= this.imageNumber; i++) {
+    while (this.isSlideshowRunning) {
+      for (let i = this.currentlyDisplayedImageName; i <= this.imageNumber && this.isSlideshowRunning; i++) {
         this.imageURL = `assets/images/${i}.jpg`;
         await this.delay(this.currentDelay);
+        this.currentlyDisplayedImageName = i;
+      }
+        if (this.currentlyDisplayedImageName === this.imageNumber) {
+        this.currentlyDisplayedImageName = 1;
       }
     }
   }
@@ -49,5 +54,14 @@ export class SlideshowComponent implements OnInit {
     this.dialog.open(DialogbodyComponent, {
       width: '550px'
     });
+  }
+
+  stopSlideshow() {
+    this.isSlideshowRunning = false;
+  }
+
+  startSlideshow() {
+    this.isSlideshowRunning = true;
+    this.showImages();
   }
 }
