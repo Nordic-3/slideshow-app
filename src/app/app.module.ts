@@ -15,11 +15,13 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from '../enviroments/enviroment';
 import { DialogbodyModule } from './pages/dialogbody/dialogbody.module';
+import { RedirectComponent } from './pages/redirect/redirect.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RedirectComponent
   ],
   imports: [
     BrowserModule,
