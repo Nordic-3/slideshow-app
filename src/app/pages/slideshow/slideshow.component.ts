@@ -35,19 +35,22 @@ export class SlideshowComponent implements OnInit {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  private async showImages() {
-    if (this.imageNumber === 0) return;
-    while (this.isSlideshowRunning) {
-      for (let i = this.currentlyDisplayedImageName; i <= this.imageNumber && this.isSlideshowRunning; i++) {
-        this.imageURL = `assets/images/${i}.jpg`;
-        await this.delay(this.currentDelay);
-        this.currentlyDisplayedImageName = i;
-      }
-        if (this.currentlyDisplayedImageName === this.imageNumber) {
-        this.currentlyDisplayedImageName = 1;
-      }
+private async showImages() {
+  if (this.imageNumber === 0) return;
+  if (!this.isSlideshowRunning) return;
+  this.isSlideshowRunning = true;
+
+  while (this.isSlideshowRunning) {
+    this.imageURL = `assets/images/${this.currentlyDisplayedImageName}.jpg`;
+    await this.delay(this.currentDelay);
+
+    if (this.currentlyDisplayedImageName < this.imageNumber) {
+      this.currentlyDisplayedImageName++;
+    } else {
+      this.currentlyDisplayedImageName = 1;
     }
   }
+}
 
   openDialog(){
     this.dataService.updateVariable(this.currentDelay);
