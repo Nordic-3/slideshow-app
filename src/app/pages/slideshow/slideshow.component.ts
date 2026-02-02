@@ -23,7 +23,7 @@ export class SlideshowComponent implements OnInit, OnDestroy {
 
  async ngOnInit(): Promise<void> {
   this.imageService.imageNumber().subscribe(imageNumbers => {
-    this.imageNumber = imageNumbers[0];
+    this.imageNumber = imageNumbers;
     this.loading = false;
     this.startSlideshow();
   });
