@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ImagesService } from '../../services/images/images.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogbodyComponent } from '../dialogbody/dialogbody.component';
@@ -10,12 +10,13 @@ import { DataSendService } from '../../services/datasend/data-send.service';
   templateUrl: './slideshow.component.html',
   styleUrls: ['./slideshow.component.scss']
 })
-export class SlideshowComponent implements OnInit {
+export class SlideshowComponent implements OnInit, OnDestroy {
   imageURL: string | undefined;
   imageNumber: number =  0;
   currentDelay : number = 5000;
   loading : boolean = true;
-  private isSlideshowRunning = true;
+  private slideshowTask: Promise<void> | null = null;
+  private isSlideshowRunning = false;
   private currentlyDisplayedImageName = 1;
 
   constructor(private imageService: ImagesService, private dialog : MatDialog, private dataService : DataSendService) { }
@@ -24,7 +25,7 @@ export class SlideshowComponent implements OnInit {
   this.imageService.imageNumber().subscribe(imageNumbers => {
     this.imageNumber = imageNumbers[0];
     this.loading = false;
-    this.showImages();
+    this.startSlideshow();
   });
   this.dataService.currentVariable.subscribe(value => {
     this.currentDelay = value;
@@ -35,19 +36,22 @@ export class SlideshowComponent implements OnInit {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  private async showImages() {
-    if (this.imageNumber === 0) return;
-    while (this.isSlideshowRunning) {
-      for (let i = this.currentlyDisplayedImageName; i <= this.imageNumber && this.isSlideshowRunning; i++) {
-        this.imageURL = `assets/images/${i}.jpg`;
-        await this.delay(this.currentDelay);
-        this.currentlyDisplayedImageName = i;
-      }
-        if (this.currentlyDisplayedImageName === this.imageNumber) {
-        this.currentlyDisplayedImageName = 1;
-      }
+private async showImages() {
+  if (this.imageNumber === 0) return;
+  if (!this.isSlideshowRunning) return;
+  this.isSlideshowRunning = true;
+
+  while (this.isSlideshowRunning) {
+    this.imageURL = `assets/images/${this.currentlyDisplayedImageName}.jpg`;
+    await this.delay(this.currentDelay);
+
+    if (this.currentlyDisplayedImageName < this.imageNumber) {
+      this.currentlyDisplayedImageName++;
+    } else {
+      this.currentlyDisplayedImageName = 1;
     }
   }
+}
 
   openDialog(){
     this.dataService.updateVariable(this.currentDelay);
@@ -61,7 +65,13 @@ export class SlideshowComponent implements OnInit {
   }
 
   startSlideshow() {
-    this.isSlideshowRunning = true;
-    this.showImages();
+    if (!this.isSlideshowRunning) {
+      this.isSlideshowRunning = true;
+      this.slideshowTask = this.showImages();
+    }
+  }
+
+  ngOnDestroy() {
+    this.stopSlideshow();
   }
 }
